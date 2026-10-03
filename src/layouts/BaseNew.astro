@@ -1,10 +1,16 @@
 ---
 import { ClientRouter } from 'astro:transitions';
+import Nav from '../components/new/Nav.astro';
 
 interface Props {
   title: string;
+  description?: string;
 }
-const { title } = Astro.props;
+const {
+  title,
+  description = 'Sumanta Kabiraj — full-stack developer in Kolkata building AI products, healthcare software and developer tools like Byre and ccslot.',
+} = Astro.props;
+const canonical = new URL(Astro.url.pathname, 'https://sumantakabiraj.com');
 ---
 <!doctype html>
 <html lang="en">
@@ -27,34 +33,86 @@ const { title } = Astro.props;
     })();
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="icon" type="image/jpeg" href="/me.jpeg" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
   <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content="https://sumantakabiraj.com/me.jpeg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@sumantadotai" />
+  <meta name="theme-color" content="#0b0b0c" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style is:global>
+    :root{--w:780px}
     *{box-sizing:border-box}
     html,body{margin:0}
-    body{font-family:'Onest',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-    html[data-theme="dark"]{--bg:#0a0a0a;--fg:#f5f5f4;--fg2:#a8a8a5;--dim:#6b6b68;--card:#141413;--cardh:#1b1b19;--bd:#242422;--chip:#1c1c1a;--chipbd:#2a2a27;--chipfg:#cfcfca;--code:#141413;--codebd:#242422;--codefg:#cfcfca}
-    html[data-theme="light"]{--bg:#faf9f7;--fg:#1a1a17;--fg2:#565650;--dim:#8f8f88;--card:#f2f1ec;--cardh:#eceae3;--bd:#e2e0d8;--chip:#eeece5;--chipbd:#ddd9cf;--chipfg:#43433d;--code:#f2f1ec;--codebd:#ddd9cf;--codefg:#43433d}
+    body{font-family:'Onest',system-ui,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh}
+    html[data-theme="dark"]{--bg:#0b0b0c;--fg:#f6f5f2;--fg2:#c4c3bd;--dim:#8a8984;--card:#141415;--cardh:#1a1a1c;--bd:#26262a;--chip:#18181a;--chipbd:#2c2c30;--chipfg:#dcdbd5;--code:#121214;--codebd:#26262a;--codefg:#dcdbd5;--ac:#ff7a45;--acsoft:rgba(255,122,69,.12);--acbd:rgba(255,122,69,.35);--onac:#1a0d07;--ok:#3ddc84;--glow:rgba(255,122,69,.16);--grid:rgba(255,255,255,.045)}
+    html[data-theme="light"]{--bg:#fbfaf7;--fg:#16150f;--fg2:#4a4943;--dim:#7c7b74;--card:#ffffff;--cardh:#f6f4ee;--bd:#e4e1d8;--chip:#f3f1ea;--chipbd:#e0dcd0;--chipfg:#37362f;--code:#f4f2ec;--codebd:#e0dcd0;--codefg:#37362f;--ac:#d9480f;--acsoft:rgba(217,72,15,.08);--acbd:rgba(217,72,15,.3);--onac:#fff;--ok:#1f9d55;--glow:rgba(255,122,69,.18);--grid:rgba(0,0,0,.05)}
     html,body{background:var(--bg);color:var(--fg)}
+    /* ambient glow + faded dot grid behind the top of every page */
+    body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+      background:radial-gradient(600px 380px at 50% -80px,var(--glow),transparent 70%),radial-gradient(var(--grid) 1px,transparent 1px) 0 0/22px 22px;
+      -webkit-mask-image:linear-gradient(#000,transparent 620px);mask-image:linear-gradient(#000,transparent 620px)}
+    ::selection{background:var(--ac);color:var(--onac)}
     a{color:inherit;text-decoration:none}
+    :focus-visible{outline:2px solid var(--ac);outline-offset:3px;border-radius:6px}
+    .serif{font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-weight:400;letter-spacing:0}
+    .mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+    .acc{color:var(--ac)}
     @keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-    .io{transition:color .18s,transform .18s}.io:hover{color:var(--fg);transform:translateY(-2px)}
-    .chip{transition:border-color .18s,color .18s}.chip:hover{border-color:var(--dim);color:var(--fg)}
-    .pcard{transition:border-color .2s,background .2s}.pcard:hover{border-color:var(--dim);background:var(--cardh)}
-    .cta{transition:border-color .2s,background .2s}.cta:hover{border-color:var(--dim);background:var(--cardh)}
-    .tt{transition:color .18s}.tt:hover{color:var(--fg)}
-    .back{transition:color .18s}.back:hover{color:var(--fg)}
-    .exp{transition:color .18s}.exp:hover .expco{color:var(--fg)}
-    .post{transition:color .18s}.post:hover .ptitle{color:var(--fg)}
+    @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+    @keyframes pulse{0%{box-shadow:0 0 0 0 var(--ok)}70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
+    .rise{animation:rise .7s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--d,0) * 80ms)}
+    @media (prefers-reduced-motion:reduce){.rise,.dot{animation:none!important}}
+    .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);display:inline-block;animation:pulse 2s infinite}
+    .io{transition:color .18s,transform .18s}.io:hover{color:var(--ac);transform:translateY(-2px)}
+    .chip{transition:border-color .18s,color .18s,background .18s}.chip:hover{border-color:var(--acbd);color:var(--ac);background:var(--acsoft)}
+    .pcard{transition:border-color .2s,background .2s,transform .2s,box-shadow .2s}.pcard:hover{border-color:var(--acbd);background:var(--cardh);box-shadow:0 10px 30px -18px var(--ac)}
+    a.pcard:hover,.fcard:hover{transform:translateY(-2px)}
+    .fcard{transition:border-color .2s,transform .2s}.fcard:hover{border-color:var(--acbd)}
+    .cta{transition:border-color .2s,background .2s,color .2s}.cta:hover{border-color:var(--acbd);background:var(--acsoft);color:var(--ac)}
+    .btn{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;padding:12px 20px;border-radius:10px;border:1px solid var(--bd);color:var(--fg);transition:transform .2s,box-shadow .2s,background .2s,border-color .2s}
+    .btn:hover{transform:translateY(-2px);border-color:var(--acbd)}
+    .btn-p{background:var(--ac);border-color:var(--ac);color:var(--onac);box-shadow:0 8px 24px -10px var(--ac)}
+    .btn-p:hover{box-shadow:0 12px 30px -10px var(--ac)}
+    .nl{font-size:14px;color:var(--fg2);transition:color .18s}.nl:hover{color:var(--ac)}
+    .tt{transition:color .18s}.tt:hover{color:var(--ac)}
+    .back{transition:color .18s}.back:hover{color:var(--ac)}
+    .exp{transition:color .18s}.exp:hover .expco{color:var(--ac)}
+    .post{transition:color .18s}.post:hover .ptitle{color:var(--ac)}
+    html[data-theme="dark"] [data-theme-icon="light"],html[data-theme="light"] [data-theme-icon="dark"]{display:none}
+    .navlink[aria-current="page"]{color:var(--fg);font-weight:600}
+    .kbtn{display:inline-flex;align-items:center;gap:7px;height:34px;padding:0 10px;border-radius:9px;border:1px solid var(--bd);background:var(--card);color:var(--fg2);cursor:pointer;font:inherit;transition:border-color .18s,color .18s}
+    .kbtn:hover{border-color:var(--acbd);color:var(--ac)}
+    .kbtn kbd{font-size:11px}
+    @media (max-width:560px){.navlink{display:none}}
+    #palette{width:min(620px,calc(100vw - 32px));margin:12vh auto auto;padding:0;border:1px solid var(--bd);border-radius:16px;background:var(--card);color:var(--fg);box-shadow:0 30px 80px -20px rgba(0,0,0,.55),0 0 0 1px var(--acsoft)}
+    #palette::backdrop{background:rgba(5,5,6,.55);backdrop-filter:blur(4px)}
+    #palette[open]{animation:fadein .18s ease}
+    #palette-q{flex:1;min-width:0;border:0;outline:0;background:none;color:var(--fg);font:inherit;font-size:16px}
+    .pi{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:10px;font-size:14px;min-width:0}
+    .pi:hover,.pi.sel{background:var(--acsoft)}
+    .pi.sel{box-shadow:inset 2px 0 0 var(--ac)}
+    /* cursor-following spotlight on cards */
+    .spot{position:relative}
+    .spot:after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(280px circle at var(--mx,50%) var(--my,50%),var(--acsoft),transparent 70%)}
+    .spot:hover:after{opacity:1}
+    /* scroll-driven reveal where supported; content stays visible elsewhere */
+    @media (prefers-reduced-motion:no-preference){@supports (animation-timeline:view()){.reveal{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 35%}}}
+    .art a{color:var(--ac);text-decoration:underline;text-decoration-color:var(--acbd);text-underline-offset:3px}
 
     details.pcard summary{list-style:none;cursor:pointer}
     details.pcard summary::-webkit-details-marker{display:none}
     details.pcard summary::marker{content:''}
     details.pcard .chev{display:inline-block;transition:transform .18s;color:var(--dim)}
-    details[open].pcard .chev{transform:rotate(90deg)}
+    details[open].pcard .chev{transform:rotate(90deg);color:var(--ac);border-color:var(--acbd)!important}
     details.pcard .pbody{animation:fadein .22s ease}
 
     .art p{margin:0 0 20px;font-size:17px;line-height:1.75;color:var(--fg2)}
@@ -64,10 +122,10 @@ const { title } = Astro.props;
     .art ol{margin:0 0 20px;padding-left:22px;display:flex;flex-direction:column;gap:11px;color:var(--fg2)}
     .art ol li{font-size:17px;line-height:1.6;color:var(--fg2);padding-left:6px}
     .art li{position:relative;padding-left:22px;font-size:17px;line-height:1.6;color:var(--fg2)}
-    .art li:before{content:"\2014";position:absolute;left:0;color:var(--dim)}
+    .art li:before{content:"\2014";position:absolute;left:0;color:var(--ac)}
     .art strong{color:var(--fg);font-weight:600}
     .art em{color:var(--fg2)}
-    .art blockquote{margin:0 0 20px;padding:4px 0 4px 18px;border-left:2px solid var(--bd);color:var(--fg2);font-style:italic}
+    .art blockquote{margin:0 0 20px;padding:4px 0 4px 18px;border-left:2px solid var(--ac);color:var(--fg2);font-style:italic}
     .art blockquote p{margin:0}
     .art code{background:var(--chip);border:1px solid var(--chipbd);border-radius:4px;padding:2px 6px;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:14px;color:var(--chipfg)}
     .art pre{margin:0 0 20px;background:var(--code)!important;border:1px solid var(--codebd);border-radius:12px;padding:18px 20px;overflow-x:auto;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:14px;line-height:1.6;color:var(--codefg)!important}
@@ -80,7 +138,12 @@ const { title } = Astro.props;
   </script>
 </head>
 <body>
+  <Nav />
   <slot />
+  <footer style="max-width:var(--w);margin:0 auto;padding:28px 28px 48px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px;color:var(--dim)">
+    <span>&copy; {new Date().getFullYear()} Sumanta Kabiraj</span>
+    <span class="mono" style="font-size:12px">Kolkata &middot; <span data-clock>IST</span> &middot; press <kbd style="border:1px solid var(--bd);border-radius:4px;padding:0 5px">/</kbd> to search</span>
+  </footer>
   <script is:inline>
     document.addEventListener('click', function (e) {
       var t = e.target.closest('[data-theme-toggle]');
@@ -89,6 +152,20 @@ const { title } = Astro.props;
       document.documentElement.dataset.theme = next;
       try { localStorage.setItem('sk-theme', next); } catch (err) {}
     });
+    document.addEventListener('pointermove', function (e) {
+      var c = e.target.closest && e.target.closest('.spot');
+      if (!c) return;
+      var r = c.getBoundingClientRect();
+      c.style.setProperty('--mx', e.clientX - r.left + 'px');
+      c.style.setProperty('--my', e.clientY - r.top + 'px');
+    }, { passive: true });
+    function clock() {
+      var t = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Kolkata', hour: 'numeric', minute: '2-digit' }).format(new Date());
+      document.querySelectorAll('[data-clock]').forEach(function (el) { el.textContent = t + ' IST'; });
+    }
+    clock();
+    setInterval(clock, 30000);
+    document.addEventListener('astro:after-swap', clock);
   </script>
 </body>
 </html>
