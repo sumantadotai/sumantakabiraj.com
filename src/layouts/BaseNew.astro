@@ -32,7 +32,7 @@ const canonical = new URL(Astro.url.pathname, 'https://sumantakabiraj.com');
       document.addEventListener('astro:after-swap', applyTheme);
     })();
   </script>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <link rel="icon" type="image/png" href="/favicon.png" />
   <title>{title}</title>
   <meta name="description" content={description} />
@@ -93,6 +93,13 @@ const canonical = new URL(Astro.url.pathname, 'https://sumantakabiraj.com');
     .kbtn:hover{border-color:var(--acbd);color:var(--ac)}
     .kbtn kbd{font-size:11px}
     @media (max-width:560px){.navlink{display:none}}
+    .tabbar{display:none}
+    @media (max-width:560px){
+      .tabbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:40;padding:6px 6px calc(6px + env(safe-area-inset-bottom));background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);border-top:1px solid var(--bd)}
+      .tabbar a{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 0;border-radius:10px;font-size:10.5px;font-weight:500;color:var(--dim);-webkit-tap-highlight-color:transparent}
+      .tabbar a[aria-current="page"]{color:var(--ac);background:var(--acsoft)}
+      body{padding-bottom:calc(68px + env(safe-area-inset-bottom))}
+    }
     #palette{width:min(620px,calc(100vw - 32px));margin:12vh auto auto;padding:0;border:1px solid var(--bd);border-radius:16px;background:var(--card);color:var(--fg);box-shadow:0 30px 80px -20px rgba(0,0,0,.55),0 0 0 1px var(--acsoft)}
     #palette::backdrop{background:rgba(5,5,6,.55);backdrop-filter:blur(4px)}
     #palette[open]{animation:fadein .18s ease}

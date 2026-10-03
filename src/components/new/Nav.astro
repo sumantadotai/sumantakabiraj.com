@@ -11,6 +11,15 @@ const links = [
 ];
 const posts = (await getCollection('blog')).sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
 
+// Bottom tab bar (mobile only) — 24×24 stroke icons.
+const tabs = [
+  { href: '/', label: 'Home', d: 'M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z' },
+  { href: '/apps', label: 'Apps', d: 'M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z' },
+  { href: '/projects', label: 'Projects', d: 'M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z' },
+  { href: '/experience', label: 'Work', d: 'M3 8h18v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1zM8 8V5a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v3M3 13h18' },
+  { href: '/blog', label: 'Blog', d: 'M4 20h4L19 9l-4-4L4 16zM13.5 6.5l4 4' },
+];
+
 type Item = { label: string; hint: string; href: string; ext?: boolean };
 const groups: [string, Item[]][] = [
   ['Pages', [{ label: 'Home', hint: '/', href: '/' }, ...links.map((l) => ({ label: l.label, hint: l.href, href: l.href }))]],
@@ -44,6 +53,15 @@ const groups: [string, Item[]][] = [
     </div>
   </nav>
 </header>
+
+<nav class="tabbar" aria-label="Primary">
+  {tabs.map((t) => (
+    <a href={t.href} aria-current={(t.href === '/' ? path === '/' : path.startsWith(t.href)) ? 'page' : undefined}>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d={t.d} /></svg>
+      <span>{t.label}</span>
+    </a>
+  ))}
+</nav>
 
 <dialog id="palette" aria-label="Command menu">
   <div style="display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--bd)">
