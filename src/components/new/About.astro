@@ -1,9 +1,37 @@
 ---
-import { BIO_PARAGRAPHS } from '../../data/profile';
+import { BIO_PARAGRAPHS, FOCUS, EDUCATION, CAREER_START, HERO } from '../../data/profile';
+import SectionHead from './SectionHead.astro';
+
+const glance = [
+  ['Role', 'Full Stack Developer · Team Lead, AI'],
+  ['Experience', `${new Date().getFullYear() - CAREER_START}+ years, since ${CAREER_START}`],
+  ['Currently', HERO.building],
+  ['Based in', `${HERO.location} · IST (UTC+5:30)`],
+  ['Open to', 'Full-time roles & freelance · Remote'],
+  ['Studying', EDUCATION[0].deg.replace('Master of Computer Applications (MCA)', 'MCA')],
+];
 ---
-<section style="max-width:780px;margin:0 auto;padding:0 28px 56px">
+<section style="max-width:var(--w);margin:0 auto;padding:0 28px 48px">
+  <SectionHead num="01" title="About" />
   {BIO_PARAGRAPHS.map((p) => (
-    <p style="margin:0 0 18px;font-size:16px;line-height:1.7;color:var(--fg2)">{p}</p>
+    <p style="margin:0 0 18px;max-width:68ch;font-size:17px;line-height:1.75;color:var(--fg2)">{p}</p>
   ))}
-  <a href="#contact" class="io" style="font-size:15px;font-weight:600;color:var(--fg)">Let's work together &rarr;</a>
+  <dl class="spot" style="margin:28px 0 12px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));border:1px solid var(--bd);border-radius:14px;background:var(--card);overflow:hidden">
+    {glance.map(([k, v]) => (
+      <div style="padding:14px 18px;border-bottom:1px solid var(--bd);border-right:1px solid var(--bd);margin:0 -1px -1px 0">
+        <dt class="mono" style="font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:4px">{k}</dt>
+        <dd style="margin:0;font-size:14.5px;font-weight:600;color:var(--fg)">{v}</dd>
+      </div>
+    ))}
+  </dl>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:0 0 22px">
+    {FOCUS.map((f, i) => (
+      <div class="fcard spot" style="padding:18px;border:1px solid var(--bd);border-radius:14px;background:var(--card)">
+        <div class="mono acc" style="font-size:11.5px;margin-bottom:10px">0{i + 1}</div>
+        <div style="font-size:15.5px;font-weight:700;color:var(--fg);margin-bottom:6px">{f.title}</div>
+        <p style="margin:0;font-size:13.5px;line-height:1.6;color:var(--fg2)">{f.body}</p>
+      </div>
+    ))}
+  </div>
+  <a href="#contact" class="io" style="display:inline-block;font-size:15px;font-weight:600;color:var(--ac)">Let's work together &rarr;</a>
 </section>

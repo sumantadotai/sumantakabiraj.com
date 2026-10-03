@@ -1,9 +1,10 @@
 ---
 import { PROJECT_DATA } from '../../data/profile';
 import ProjectCard from './ProjectCard.astro';
+import SectionHead from './SectionHead.astro';
 ---
-<section style="max-width:780px;margin:0 auto;padding:0 28px 56px">
-  <h2 style="margin:0 0 16px;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)">Projects</h2>
+<section class="reveal" style="max-width:var(--w);margin:0 auto;padding:0 28px 48px">
+  <SectionHead num="03" title="Selected projects" />
   {PROJECT_DATA.slice(0, 4).map((project) => <ProjectCard project={project} />)}
   <a href="/projects" class="io" style="display:inline-block;margin-top:4px;font-size:14px;font-weight:600;color:var(--fg2)">All projects &rarr;</a>
 </section>

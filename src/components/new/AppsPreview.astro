@@ -1,0 +1,12 @@
+---
+import { APPS } from '../../data/profile';
+import SectionHead from './SectionHead.astro';
+import AppCard from './AppCard.astro';
+---
+<section class="reveal" style="max-width:var(--w);margin:0 auto;padding:0 28px 48px">
+  <SectionHead num="02" title="Shipped apps" />
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px">
+    {APPS.map((a) => <AppCard app={a} />)}
+  </div>
+  <a href="/apps" class="io" style="display:inline-block;margin-top:14px;font-size:14px;font-weight:600;color:var(--fg2)">All apps &rarr;</a>
+</section>

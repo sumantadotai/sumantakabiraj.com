@@ -6,21 +6,24 @@ interface Props {
 }
 const { project } = Astro.props;
 ---
-<details class="pcard" style="border:1px solid var(--bd);border-radius:14px;background:var(--card);margin-bottom:14px;overflow:hidden">
+<details class="pcard spot" data-q={[project.name, project.blurb, project.techline, ...project.tech].join(' ').toLowerCase()} data-tags={project.tech.map((t) => t.toLowerCase()).join('|')} style="border:1px solid var(--bd);border-radius:14px;background:var(--card);margin-bottom:14px;overflow:hidden">
   <summary style="padding:20px;display:flex;align-items:center;justify-content:space-between;gap:16px">
     <div>
-      <div style="font-size:17px;font-weight:600;color:var(--fg)">{project.name} <span style="font-weight:400;color:var(--dim);font-size:14px">&middot; {project.year}</span></div>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span style="font-size:17.5px;font-weight:700;letter-spacing:-.01em;color:var(--fg)">{project.name}</span><span class="mono" style="font-size:11px;padding:2px 8px;border-radius:6px;background:var(--acsoft);color:var(--ac)">{project.year}</span></div>
       <div style="font-size:14.5px;color:var(--fg2);margin-top:6px">{project.blurb}</div>
-      <div style="font-size:12.5px;color:var(--dim);margin-top:8px">{project.techline}</div>
+      <div class="mono" style="font-size:11.5px;color:var(--dim);margin-top:10px">{project.techline}</div>
     </div>
-    <span class="chev" style="flex-shrink:0">&rsaquo;</span>
+    <span class="chev" style="flex-shrink:0;width:30px;height:30px;border-radius:50%;border:1px solid var(--bd);display:grid;place-items:center;font-size:18px">&rsaquo;</span>
   </summary>
   <div class="pbody" style="padding:0 20px 22px">
+    {project.img !== '/me.jpeg' && (
+      <img src={project.img} alt={`${project.name} screenshot`} loading="lazy" style="display:block;width:100%;max-height:300px;object-fit:cover;object-position:top;border-radius:10px;border:1px solid var(--bd);margin-bottom:18px" />
+    )}
     <p style="margin:0 0 16px;font-size:14.5px;line-height:1.65;color:var(--fg2)">{project.long}</p>
     <ul style="margin:0 0 18px;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:8px">
       {project.features.map((f) => (
         <li style="position:relative;padding-left:18px;font-size:14px;color:var(--fg2)">
-          <span style="position:absolute;left:0;color:var(--dim)">&mdash;</span>{f}
+          <span style="position:absolute;left:0;color:var(--ac)">&mdash;</span>{f}
         </li>
       ))}
     </ul>
@@ -34,7 +37,7 @@ const { project } = Astro.props;
         <a class="cta" href={project.github} target="_blank" rel="noreferrer" style="font-size:13px;font-weight:600;padding:9px 16px;border:1px solid var(--bd);border-radius:8px;color:var(--fg)">GitHub</a>
       )}
       {project.demo && (
-        <a class="cta" href={project.demo} target="_blank" rel="noreferrer" style="font-size:13px;font-weight:600;padding:9px 16px;border:1px solid var(--bd);border-radius:8px;color:var(--fg)">Live</a>
+        <a class="cta" href={project.demo} target="_blank" rel="noreferrer" style="font-size:13px;font-weight:600;padding:9px 16px;border:1px solid var(--ac);border-radius:8px;background:var(--ac);color:var(--onac)">Live &nearr;</a>
       )}
     </div>
   </div>

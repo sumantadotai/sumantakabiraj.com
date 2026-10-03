@@ -5,27 +5,31 @@ import About from '../components/new/About.astro';
 import Stack from '../components/new/Stack.astro';
 import BlogPreview from '../components/new/BlogPreview.astro';
 import ProjectsPreview from '../components/new/ProjectsPreview.astro';
+import AppsPreview from '../components/new/AppsPreview.astro';
 import ExperienceRow from '../components/new/ExperienceRow.astro';
 import Contact from '../components/new/Contact.astro';
+import SectionHead from '../components/new/SectionHead.astro';
 import { EXPERIENCE, EDUCATION } from '../data/profile';
 ---
 <BaseNew title="Sumanta Kabiraj — Full-Stack Developer">
   <Hero />
   <About />
+  <AppsPreview />
+  <ProjectsPreview />
   <Stack />
   <BlogPreview />
-  <ProjectsPreview />
-  <section style="max-width:780px;margin:0 auto;padding:0 28px 56px">
-    <h2 style="margin:0 0 4px;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)">Experience</h2>
+  <section class="reveal" style="max-width:var(--w);margin:0 auto;padding:0 28px 48px">
+    <SectionHead num="06" title="Experience" />
     {EXPERIENCE.map((e) => <ExperienceRow co={e.co} role={e.role} when={e.when} note={e.note} />)}
     <a href="/experience" class="io" style="display:inline-block;margin-top:14px;font-size:14px;font-weight:600;color:var(--fg2)">Full history &rarr;</a>
 
-    <h2 style="margin:40px 0 4px;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)">Education</h2>
+    <div style="height:40px"></div>
+    <SectionHead num="07" title="Education" />
     {EDUCATION.map((e) => (
       <div style="padding:18px 0;border-top:1px solid var(--bd)">
         <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
-          <div style="font-size:16px;font-weight:600;color:var(--fg2)">{e.school}</div>
-          <div style="font-size:13px;color:var(--dim)">{e.when}</div>
+          <div style="font-size:16px;font-weight:700;color:var(--fg)">{e.school}</div>
+          <div class="mono" style="font-size:12px;color:var(--dim)">{e.when}</div>
         </div>
         <div style="font-size:14px;color:var(--fg2);margin-top:4px">{e.deg}</div>
       </div>

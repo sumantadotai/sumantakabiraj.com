@@ -1,0 +1,19 @@
+---
+import type { App } from '../../data/profile';
+
+interface Props {
+  app: App;
+}
+const { app } = Astro.props;
+---
+<a href={`/apps/${app.slug}`} class="pcard spot" data-q={[app.name, app.tagline, app.body, ...app.platforms, ...app.features].join(' ').toLowerCase()} data-tags={app.tags.map((p) => p.toLowerCase()).join('|')} style="display:block;padding:18px;border:1px solid var(--bd);border-radius:14px;background:var(--card)">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+    {app.icon
+      ? <img src={app.icon} alt="" width="32" height="32" loading="lazy" style="width:32px;height:32px;border-radius:8px;object-fit:cover" />
+      : <span class="mono" style="width:32px;height:32px;border-radius:8px;display:grid;place-items:center;background:var(--acsoft);color:var(--ac);font-size:12px">{app.name.slice(0, 2).toLowerCase()}</span>}
+    <span style="font-size:16px;font-weight:700;color:var(--fg)">{app.name}</span>
+    <span style="margin-left:auto;color:var(--dim)">&rarr;</span>
+  </div>
+  <p style="margin:0 0 10px;font-size:13.5px;line-height:1.55;color:var(--fg2)">{app.tagline}</p>
+  <div class="mono" style="font-size:11px;color:var(--dim)">{app.status} · {app.platforms.join(' · ')}</div>
+</a>
