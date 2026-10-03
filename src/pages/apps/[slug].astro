@@ -1,0 +1,92 @@
+---
+import BaseNew from '../../layouts/BaseNew.astro';
+import { APPS, type App } from '../../data/profile';
+
+export function getStaticPaths() {
+  return APPS.map((app) => ({ params: { slug: app.slug }, props: { app } }));
+}
+const { app: featured } = Astro.props as { app: App };
+// Illustrative state for Byre's window mock — mirrors the app's own landing page.
+const engines = [
+  { name: 'PostgreSQL 17', port: ':5432', on: true },
+  { name: 'MySQL 9.1', port: ':3306', on: true },
+  { name: 'MongoDB 8.0', port: ':27017', on: false },
+];
+---
+<BaseNew title={`${featured.name} — Sumanta Kabiraj`} description={`${featured.name}: ${featured.tagline}`}>
+  <div style="max-width:var(--w);margin:0 auto;padding:56px 28px 32px">
+    <a class="back mono rise" href="/apps" style="--d:0;display:inline-block;margin-bottom:24px;font-size:13px;color:var(--fg2)">&larr; All apps</a>
+
+    <article class="spot rise" style="--d:1;border:1px solid var(--bd);border-radius:20px;overflow:hidden;background:radial-gradient(520px 260px at 100% 0%,rgba(63,162,255,.14),transparent 70%),var(--card);margin-bottom:24px">
+      <div style="padding:30px 30px 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px;align-items:start">
+        <div>
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px">
+            <img src={featured.icon} alt="" width="56" height="56" style="border-radius:14px;box-shadow:0 10px 30px -10px rgba(10,106,232,.7)" />
+            <div>
+              <div style="display:flex;align-items:center;gap:8px">
+                <h1 style="margin:0;font-size:24px;font-weight:800;letter-spacing:-.02em">{featured.name}</h1>
+                <span class="mono" style="font-size:11px;padding:2px 8px;border-radius:6px;background:var(--acsoft);color:var(--ac)">{featured.status}</span>
+              </div>
+              <div class="mono" style="font-size:11.5px;color:var(--dim);margin-top:4px">{featured.platforms.join(' · ')} · free &amp; open source</div>
+            </div>
+          </div>
+          <p style="margin:0 0 6px;font-size:19px;font-weight:700;letter-spacing:-.01em;color:var(--fg)">{featured.tagline}</p>
+          <p style="margin:0 0 20px;font-size:15px;line-height:1.65;color:var(--fg2)">{featured.body}</p>
+          <div style="display:flex;flex-wrap:wrap;gap:10px">
+            <a class="btn btn-p" href={featured.links[0].href} target="_blank" rel="noreferrer">{featured.links[0].label} &rarr;</a>
+            <a class="btn" href={featured.url} target="_blank" rel="noreferrer">{new URL(featured.url).host} &nearr;</a>
+          </div>
+        </div>
+
+        {featured.slug === 'byre' && <div aria-hidden="true" style="border:1px solid var(--bd);border-radius:14px;background:var(--bg);box-shadow:0 24px 60px -30px rgba(0,0,0,.6);overflow:hidden;font-size:13px">
+          <div style="display:flex;align-items:center;gap:6px;padding:10px 12px;border-bottom:1px solid var(--bd)">
+            <span style="width:9px;height:9px;border-radius:50%;background:#ff5f57"></span>
+            <span style="width:9px;height:9px;border-radius:50%;background:#febc2e"></span>
+            <span style="width:9px;height:9px;border-radius:50%;background:#28c840"></span>
+            <span style="margin-left:8px;font-size:12px;color:var(--dim)">Byre</span>
+          </div>
+          <div style="padding:8px">
+            {engines.map((e) => (
+              <div style="display:flex;align-items:center;gap:10px;padding:9px 8px;border-radius:8px">
+                <span class={e.on ? 'dot' : ''} style={e.on ? '' : 'width:8px;height:8px;border-radius:50%;background:var(--dim)'}></span>
+                <span style="font-weight:600;color:var(--fg)">{e.name}</span>
+                <span class="mono" style="margin-left:auto;font-size:11.5px;color:var(--dim)">{e.port}</span>
+                <span class="mono" style={`font-size:10.5px;padding:2px 7px;border-radius:5px;${e.on ? 'background:rgba(61,220,132,.12);color:var(--ok)' : 'background:var(--chip);color:var(--dim)'}`}>{e.on ? 'Running' : 'Stopped'}</span>
+              </div>
+            ))}
+            <div class="mono" style="margin:6px 8px 8px;padding:8px 10px;border-radius:8px;border:1px solid var(--bd);font-size:11px;color:var(--fg2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">postgresql://postgres@127.0.0.1:5432/postgres</div>
+          </div>
+        </div>}
+      </div>
+      <ul style="list-style:none;margin:28px 0 0;padding:20px 30px;border-top:1px solid var(--bd);display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px 24px">
+        {featured.features.map((f) => (
+          <li style="position:relative;padding-left:18px;font-size:13.5px;line-height:1.55;color:var(--fg2)"><span style="position:absolute;left:0;color:var(--ac)">&#10022;</span>{f}</li>
+        ))}
+      </ul>
+      <div style="display:flex;gap:18px;padding:14px 30px 20px">
+        {featured.links.slice(1).map((l) => <a class="io mono" href={l.href} target="_blank" rel="noreferrer" style="font-size:12.5px;color:var(--fg2)">{l.label} &nearr;</a>)}
+      </div>
+    </article>
+
+    {featured.install && (
+      <div class="mono" style="display:flex;align-items:center;gap:10px;padding:10px 10px 10px 14px;border-radius:10px;border:1px solid var(--codebd);background:var(--code);font-size:13px">
+        <span class="acc">$</span><code style="flex:1;color:var(--codefg)">{featured.install}</code>
+        <button class="kbtn" data-copy={featured.install} style="height:28px;font-size:12px">Copy</button>
+      </div>
+    )}
+  </div>
+  <script is:inline>
+    (function () {
+      if (window.__skCopy) return;
+      window.__skCopy = true;
+      document.addEventListener('click', function (e) {
+        var b = e.target.closest('[data-copy]');
+        if (!b) return;
+        navigator.clipboard.writeText(b.dataset.copy).then(function () {
+          b.textContent = 'Copied';
+          setTimeout(function () { b.textContent = 'Copy'; }, 1500);
+        });
+      });
+    })();
+  </script>
+</BaseNew>

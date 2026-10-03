@@ -1,0 +1,21 @@
+---
+import BaseNew from '../../layouts/BaseNew.astro';
+import AppCard from '../../components/new/AppCard.astro';
+import FilterBar from '../../components/new/FilterBar.astro';
+import { APPS, APP_TAGS } from '../../data/profile';
+
+const tags = APP_TAGS.map((label) => ({ label, count: APPS.filter((a) => a.tags.includes(label)).length }));
+---
+<BaseNew title="Apps — Sumanta Kabiraj" description="Apps and developer tools by Sumanta Kabiraj — Byre and more.">
+  <div style="max-width:var(--w);margin:0 auto;padding:56px 28px 64px">
+    <div class="mono acc rise" style="--d:0;font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px">{APPS.length} {APPS.length === 1 ? 'app' : 'apps'}</div>
+    <h1 class="rise" style="--d:1;margin:0 0 10px;font-size:clamp(36px,6vw,52px);line-height:1.05;font-weight:800;letter-spacing:-.035em;color:var(--fg)">Apps I've <span class="serif acc">shipped</span>.</h1>
+    <p class="rise" style="--d:2;margin:0 0 28px;font-size:17px;color:var(--fg2)">Products you can download, install or open today. Click any app for details.</p>
+
+    <FilterBar placeholder="Filter by name, platform or feature…" tags={tags} />
+
+    <div data-filter-list style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px">
+      {APPS.map((a) => <AppCard app={a} />)}
+    </div>
+  </div>
+</BaseNew>

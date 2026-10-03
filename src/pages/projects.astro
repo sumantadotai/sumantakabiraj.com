@@ -1,13 +1,24 @@
 ---
 import BaseNew from '../layouts/BaseNew.astro';
 import ProjectCard from '../components/new/ProjectCard.astro';
+import FilterBar from '../components/new/FilterBar.astro';
 import { PROJECT_DATA } from '../data/profile';
+
+// Filter chips: the most-used technologies across projects.
+const counts = new Map<string, number>();
+PROJECT_DATA.forEach((p) => p.tech.forEach((t) => counts.set(t, (counts.get(t) ?? 0) + 1)));
+const techs = [...counts].sort((a, b) => b[1] - a[1]).slice(0, 10).map(([label, count]) => ({ label, count }));
 ---
-<BaseNew title="Projects — Sumanta Kabiraj">
-  <div style="max-width:780px;margin:0 auto;padding:56px 28px 64px">
-    <a href="/" class="back" style="font-size:14px;color:var(--dim)">&larr; Home</a>
-    <h1 style="margin:20px 0 8px;font-size:34px;font-weight:800;letter-spacing:-.02em;color:var(--fg)">Projects</h1>
-    <p style="margin:0 0 36px;font-size:15.5px;color:var(--fg2)">A selection of products I've built.</p>
-    {PROJECT_DATA.map((project) => <ProjectCard project={project} />)}
+<BaseNew title="Projects — Sumanta Kabiraj" description="Projects by Sumanta Kabiraj — AI hiring, mental-health chat, telehealth, RAG bots and full-stack apps.">
+  <div style="max-width:var(--w);margin:0 auto;padding:56px 28px 64px">
+    <div class="mono acc rise" style="--d:0;font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px">{PROJECT_DATA.length} projects</div>
+    <h1 class="rise" style="--d:1;margin:0 0 10px;font-size:clamp(36px,6vw,52px);line-height:1.05;font-weight:800;letter-spacing:-.035em;color:var(--fg)">Things I've <span class="serif acc">built</span>.</h1>
+    <p class="rise" style="--d:2;margin:0 0 28px;font-size:17px;color:var(--fg2)">A selection of products and experiments. Click any card for details.</p>
+
+    <FilterBar placeholder="Filter by name or tech…" tags={techs} />
+
+    <div data-filter-list>
+      {PROJECT_DATA.map((project) => <ProjectCard project={project} />)}
+    </div>
   </div>
 </BaseNew>
