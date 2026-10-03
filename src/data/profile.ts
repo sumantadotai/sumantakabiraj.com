@@ -25,7 +25,7 @@ export const PROJECT_DATA: Project[] = [
     long: 'A complete AI hiring platform covering both recruiter and candidate workflows — from job creation through automated, AI-graded voice interviews.',
     features: ['Recruiter & candidate workflows', 'Real-time voice interviews (WebRTC)', 'Automated evaluation & scoring', 'Attention monitoring during sessions'],
     tech: ['React', 'Node.js', 'WebRTC', 'OpenAI', 'PostgreSQL', 'Tailwind'],
-    github: 'https://github.com/infysumanta/hirelytics', demo: 'https://hirelytics.app/',
+    github: 'https://github.com/sumantadotai/hirelytics.app', demo: 'https://hirelytics.app/',
   },
   {
     id: 2, name: 'Talkthru', year: '2024', slug: 'talkthru', img: '/talkthru.png',
@@ -50,7 +50,7 @@ export const PROJECT_DATA: Project[] = [
     long: 'A command-line coding agent that generates code, scaffolds folder structures and iterates on full-stack projects with GenAI — built in a 2-day sprint on ~1M tokens.',
     features: ['AI-assisted code generation', 'Folder-structure scaffolding', 'Iterative full-stack development', 'GenAI-driven refactor loops'],
     tech: ['Python', 'CLI', 'OpenAI'],
-    github: 'https://github.com/infysumanta/python-cli-ai-coder', demo: 'https://x.com/infysumanta/status/1911327271782150213',
+    github: 'https://github.com/sumantadotai/python-cli-ai-coder', demo: 'https://x.com/infysumanta/status/1911327271782150213',
   },
   {
     id: 5, name: 'Terminal Portfolio', year: '2026', slug: 'terminal-portfolio', img: '/me.jpeg',
@@ -68,7 +68,7 @@ export const PROJECT_DATA: Project[] = [
     long: 'An appointment-booking app with in-browser video calls, built on Next.js with WebRTC and getstream.io handling the real-time video layer.',
     features: ['Appointment scheduling', 'Real-time video calls (WebRTC)', 'getstream.io video integration', 'Responsive SCSS/Tailwind UI'],
     tech: ['Next.js', 'React', 'SCSS', 'Tailwind', 'WebRTC', 'GetStream.io'],
-    github: 'https://github.com/infysumanta/nextjs-videocall-app',
+    github: 'https://github.com/sumantadotai/nextjs-videocall-app', demo: 'https://nextjs-videocall-app.vercel.app',
   },
   {
     id: 7, name: 'Full Stack Kanban Application', year: '2022', slug: 'kanban-app', img: '/me.jpeg',
@@ -77,7 +77,7 @@ export const PROJECT_DATA: Project[] = [
     long: 'A full-stack Kanban board — boards, lists and cards with drag-and-drop, backed by a Node.js/Express/MongoDB API.',
     features: ['Drag-and-drop boards, lists & cards', 'REST API on Node/Express', 'MongoDB persistence', 'Tailwind + styled-components UI'],
     tech: ['React', 'Node.js', 'MongoDB', 'Express', 'Tailwind', 'Styled Components'],
-    github: 'https://github.com/infysumanta/node-react-kanban-app',
+    github: 'https://github.com/sumantadotai/node-react-kanban-app', demo: 'https://mern-kanban-app.vercel.app',
   },
   {
     id: 8, name: 'Dynamic Form Builder', year: '2023', slug: 'form-builder', img: '/me.jpeg',
@@ -86,7 +86,7 @@ export const PROJECT_DATA: Project[] = [
     long: 'A dynamic form builder — design forms visually on the React/Next.js front end and store schemas and submissions through a Node/Express API on Postgres.',
     features: ['Visual drag-and-drop form designer', 'Dynamic field types & validation', 'Node/Express API on Postgres', 'Tailwind + styled-components UI'],
     tech: ['React', 'Next.js', 'Node.js', 'PostgreSQL', 'Express', 'Tailwind', 'Styled Components'],
-    github: 'https://github.com/infysumanta/form-builder',
+    github: 'https://github.com/sumantadotai/form-builder', demo: 'https://form-builder-sand-zeta.vercel.app',
   },
   {
     id: 9, name: 'Provaswito Art Org Website', year: '2022', slug: 'provaswito-org', img: '/me.jpeg',
@@ -95,7 +95,7 @@ export const PROJECT_DATA: Project[] = [
     long: 'The public website for Provaswito, an art organization — showcasing events, members and their work.',
     features: ['Organization info & events', 'Member/artist showcase', 'Responsive public website'],
     tech: [],
-    github: 'https://github.com/infysumanta/provaswito.org',
+    github: 'https://github.com/sumantadotai/provaswito.org', demo: 'https://provaswito-org.vercel.app',
   },
   {
     id: 10, name: 'Pizza Booking Application', year: '2022', slug: 'pizza-booking-app', img: '/me.jpeg',
@@ -104,7 +104,7 @@ export const PROJECT_DATA: Project[] = [
     long: 'A real-time pizza booking and ordering application — place orders and track status live, built on a Node/Express/MongoDB stack.',
     features: ['Real-time order placement & tracking', 'Node/Express/MongoDB backend', 'Tailwind CSS UI'],
     tech: ['React', 'Node.js', 'MongoDB', 'Express', 'Tailwind'],
-    github: 'https://github.com/infysumanta/node-react-real-time-pizza-order-app',
+    github: 'https://github.com/sumantadotai/node-react-real-time-pizza-order-app', demo: 'https://pizza-order-app.sumantakabiraj.com',
   },
   {
     id: 11, name: 'Visual Studio Code Extensions', year: '2022', slug: 'vscode-extensions-pack', img: '/me.jpeg',
@@ -114,6 +114,51 @@ export const PROJECT_DATA: Project[] = [
     features: ['Custom VS Code extension pack'],
     tech: ['TypeScript'],
     github: 'https://github.com/vscode-extensions-pack',
+  },
+  {
+    id: 12, name: 'CourseSupportBot', year: '2026', slug: 'course-support-bot', img: '/me.jpeg',
+    blurb: 'Advanced RAG support bot that answers questions over course subtitles.',
+    techline: 'go · sqlite · openai',
+    long: 'Ask questions about a video course and get answers that cite the exact lecture and timestamp. Feed it .vtt/.srt subtitles; it builds the module structure, chunks and embeds transcripts, and answers through an advanced RAG pipeline.',
+    features: ['Answers cite the exact lecture & timestamp', 'One static Go binary with the web UI embedded', 'SQLite — no database or vector-DB server', 'Admin-editable models, retrieval tuning & guardrails'],
+    tech: ['Go', 'SQLite', 'OpenAI', 'TypeScript', 'Docker'],
+    github: 'https://github.com/sumantadotai/CourseSupportBot',
+  },
+  {
+    id: 13, name: 'AI Form Builder', year: '2024', slug: 'ai-form-builder', img: '/me.jpeg',
+    blurb: 'Describe a form in plain English and get a working form.',
+    techline: 'typescript · genai',
+    long: 'A form builder driven by prompts — describe the form you need and the app generates it for you.',
+    features: ['Prompt-to-form generation with AI'],
+    tech: ['TypeScript'],
+    github: 'https://github.com/sumantadotai/ai-form-builder', demo: 'https://ai-form-builder-eight.vercel.app',
+  },
+  {
+    id: 14, name: 'Sorting Algorithm Visualizer', year: '2024', slug: 'sorting-visualizer', img: '/me.jpeg',
+    blurb: 'Watch sorting algorithms work, step by step.',
+    techline: 'typescript · animation',
+    long: 'An interactive visualizer that animates sorting algorithms so you can watch how they work.',
+    features: ['Animated sorting visualization'],
+    tech: ['TypeScript'],
+    github: 'https://github.com/sumantadotai/sorting-algorithm-visualizer', demo: 'https://sorting-algorithm-visualizer-mocha.vercel.app',
+  },
+  {
+    id: 15, name: 'ccslot', year: '2026', slug: 'ccslot', img: '/me.jpeg',
+    blurb: 'Run multiple Claude Code accounts on one machine — separate logins, shared brain.',
+    techline: 'node · npm · cli',
+    long: 'An npm CLI that gives each Claude Code account its own config directory while symlinking projects, skills, plans and settings between them, so /resume works across accounts in the same repo.',
+    features: ['Zero dependencies', 'Separate auth and MCP credentials per slot', 'Cross-account /resume', 'macOS, Linux & Windows (Node 22+)'],
+    tech: ['Node.js', 'TypeScript', 'CLI'],
+    github: 'https://github.com/sumantadotai/ccslot', demo: 'https://ccslot.sumanta.ai/',
+  },
+  {
+    id: 16, name: 'ChaiCode Persona', year: '2026', slug: 'chaicode-persona', img: '/me.jpeg',
+    blurb: 'Chat with AI personas of Hitesh Choudhary & Piyush Garg.',
+    techline: 'next.js · ai sdk · trpc',
+    long: 'A persona chat app built on Next.js 16 and the Vercel AI SDK, with a Hono + tRPC API, Better Auth and MongoDB.',
+    features: ['Persona chat with Hitesh Choudhary & Piyush Garg', 'Next.js 16 + Vercel AI SDK', 'Hono + tRPC API, Better Auth, MongoDB'],
+    tech: ['Next.js', 'TypeScript', 'MongoDB', 'tRPC'],
+    github: 'https://github.com/sumantadotai/chaicode-persona', demo: 'https://chaicode-persona.vercel.app',
   },
 ];
 
@@ -153,3 +198,44 @@ export const HERO = {
   location: 'Kolkata, IN',
   building: 'AI MVPs at BuildFound',
 };
+
+export const FOCUS = [
+  { title: 'AI products', body: 'LLM apps, RAG pipelines, voice agents and evaluation loops — from prototype to production MVP.' },
+  { title: 'Healthcare software', body: 'Telehealth, EHR integrations, scheduling and secure auth for clinical workflows.' },
+  { title: 'Full-stack & cloud', body: 'Next.js, Node, Python and Go services on AWS/Azure — built to scale and easy to hand off.' },
+];
+
+export const CAREER_START = 2019;
+
+export type App = {
+  name: string;
+  slug: string;
+  icon?: string;
+  tagline: string;
+  body: string;
+  status: string;
+  platforms: string[];
+  // Filter chips on /apps (see APP_TAGS).
+  tags: string[];
+  features: string[];
+  install?: string;
+  url: string;
+  links: { label: string; href: string }[];
+};
+
+export const APP_TAGS = ['Web', 'Mobile', 'iOS', 'Android', 'Desktop', 'macOS', 'Windows', 'Linux', 'Terminal'];
+
+// Shipped, publicly available apps — the /apps page.
+export const APPS: App[] = [
+  {
+    name: 'Byre', slug: 'byre', icon: '/apps/byre.svg',
+    tagline: 'Every local database, under one roof.',
+    body: 'A menu-bar app that runs PostgreSQL, MySQL and MongoDB side by side — each with its own version, data folder and port. Like Postgres.app, but for every engine, with a Studio built in.',
+    status: 'v0.1.1',
+    platforms: ['macOS', 'Windows', 'Linux'],
+    tags: ['Desktop', 'macOS', 'Windows', 'Linux', 'Terminal'],
+    features: ['PostgreSQL 14–18 & 19 beta, MySQL 8.4–26, MongoDB 7.0–9.0', 'Studio: browse, query and edit Postgres, MySQL, MariaDB, MongoDB, Redis/Valkey, SQLite and Turso', 'AI agents manage your databases through the byre command', 'Automatic updates'],
+    url: 'https://byre.app/',
+    links: [{ label: 'Download', href: 'https://byre.app/download' }, { label: 'Docs', href: 'https://byre.app/docs' }, { label: 'Changelog', href: 'https://byre.app/changelog' }],
+  },
+];
