@@ -214,6 +214,8 @@ export type App = {
   tagline: string;
   body: string;
   status: string;
+  // GitHub repo whose latest release tag replaces `status` in the browser (BaseNew).
+  release?: string;
   platforms: string[];
   // Filter chips on /apps (see APP_TAGS).
   tags: string[];
@@ -228,13 +230,13 @@ export const APP_TAGS = ['Web', 'Mobile', 'iOS', 'Android', 'Desktop', 'macOS', 
 // Shipped, publicly available apps — the /apps page.
 export const APPS: App[] = [
   {
-    name: 'Byre', slug: 'byre', icon: '/apps/byre.svg',
+    name: 'Byre', slug: 'byre', icon: 'https://byre.app/app-icon.svg',
     tagline: 'Every local database, under one roof.',
-    body: 'A menu-bar app that runs PostgreSQL, MySQL and MongoDB side by side — each with its own version, data folder and port. Like Postgres.app, but for every engine, with a Studio built in.',
-    status: 'v0.1.1',
+    body: 'A menu-bar app that runs PostgreSQL, MySQL, MariaDB, MongoDB, Redis and Valkey side by side — each with its own version, data folder and port. Like Postgres.app, but for every engine, with a Studio built in.',
+    status: 'v0.4.0', release: 'byreapp/byre-releases',
     platforms: ['macOS', 'Windows', 'Linux'],
     tags: ['Desktop', 'macOS', 'Windows', 'Linux', 'Terminal'],
-    features: ['PostgreSQL 14–18 & 19 beta, MySQL 8.4–26, MongoDB 7.0–9.0', 'Studio: browse, query and edit Postgres, MySQL, MariaDB, MongoDB, Redis/Valkey, SQLite and Turso', 'AI agents manage your databases through the byre command', 'Automatic updates'],
+    features: ['PostgreSQL 14–18 & 19 beta, MySQL 8.4–26, MariaDB 10.11–13, MongoDB 7.0–9.0, Redis 8 and Valkey 9', 'Studio: browse, query and edit Postgres, MySQL, MariaDB, MongoDB, Redis/Valkey, SQLite and Turso', 'Full Redis studio: every key type, TTLs, server info and slow log', 'Back up, restore, upgrade and duplicate servers in a click', 'AI agents manage your databases through the byre command', 'Automatic updates'],
     url: 'https://byre.app/',
     links: [{ label: 'Download', href: 'https://byre.app/download' }, { label: 'Docs', href: 'https://byre.app/docs' }, { label: 'Changelog', href: 'https://byre.app/changelog' }],
   },

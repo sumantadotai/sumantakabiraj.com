@@ -173,6 +173,24 @@ const canonical = new URL(Astro.url.pathname, 'https://sumantakabiraj.com');
     clock();
     setInterval(clock, 30000);
     document.addEventListener('astro:after-swap', clock);
+    // App versions: swap the built-in status for the repo's latest release tag (cached per tab).
+    function releases() {
+      document.querySelectorAll('[data-release]').forEach(function (el) {
+        var repo = el.dataset.release, key = 'sk-rel:' + repo, tag;
+        try { tag = sessionStorage.getItem(key); } catch (err) {}
+        if (tag) { el.textContent = tag; return; }
+        fetch('https://api.github.com/repos/' + repo + '/releases/latest')
+          .then(function (r) { return r.ok ? r.json() : null; })
+          .then(function (d) {
+            if (!d || !d.tag_name) return;
+            try { sessionStorage.setItem(key, d.tag_name); } catch (err) {}
+            document.querySelectorAll('[data-release="' + repo + '"]').forEach(function (e) { e.textContent = d.tag_name; });
+          })
+          .catch(function () {});
+      });
+    }
+    releases();
+    document.addEventListener('astro:after-swap', releases);
   </script>
 </body>
 </html>

@@ -15,5 +15,5 @@ const { app } = Astro.props;
     <span style="margin-left:auto;color:var(--dim)">&rarr;</span>
   </div>
   <p style="margin:0 0 10px;font-size:13.5px;line-height:1.55;color:var(--fg2)">{app.tagline}</p>
-  <div class="mono" style="font-size:11px;color:var(--dim)">{app.status} · {app.platforms.join(' · ')}</div>
+  <div class="mono" style="font-size:11px;color:var(--dim)"><span data-release={app.release}>{app.status}</span> · {app.platforms.join(' · ')}</div>
 </a>
