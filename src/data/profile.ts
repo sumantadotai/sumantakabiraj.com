@@ -164,6 +164,7 @@ export const PROJECT_DATA: Project[] = [
 
 export const EXPERIENCE = [
   { co: 'BuildFound (Fddigital)', role: 'Full Stack Developer · Remote', when: 'Sep 2025 — Present', note: 'Building AI MVPs and scalable AI products for startups and enterprises.' },
+  { co: 'Relic Care', role: 'Full Stack Developer · Remote', when: 'Jun 2024 — Sep 2025', note: 'Built front-end features in React, TypeScript and Material-UI.' },
   { co: 'BexCode Services (Dcode Health)', role: 'Full Stack Developer · Team Lead · Remote', when: 'Feb 2023 — Sep 2025', note: 'Led team management and full-stack delivery, building Node.js services and infrastructure for Dcode Health, a healthcare platform.' },
   { co: 'Tata Consultancy Services', role: 'Assistant System Engineer Developer', when: 'Feb 2020 — Nov 2022', note: 'Back-end web development and MongoDB-based enterprise services.' },
   { co: 'Real Time Consultancy Services', role: 'Software Developer', when: 'Jul 2019 — Feb 2020', note: 'Shipped React.js and MongoDB features for client products.' },
